@@ -1,6 +1,6 @@
 import React from 'react';
 import './Post.css';
-import Card from '../Card/Card';
+import Card from '../../components/Card/Card';
 
 const Post = () => {
     return (
