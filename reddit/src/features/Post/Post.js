@@ -1,9 +1,11 @@
 import React from 'react';
 import './Post.css';
+import Card from '../Card/Card';
 
 const Post = () => {
     return (
         <article>
+            <Card>
                 <div className="post-wrapper">
                     <div className="post-container">
                         <h3 className="post-title">Title</h3>
@@ -42,6 +44,7 @@ const Post = () => {
                         </div>
                     </div>
                 </div>
+            </Card>
         </article>
     );
 }
