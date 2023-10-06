@@ -1,0 +1,130 @@
+
+.post-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-image {
+    margin: 1rem 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.author-details {
+    display: inline-flex;
+    align-items: center;
+}
+
+.post-title {
+    color: #444444;
+    margin: 5px 0;
+}
+
+
+.author-username {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #3d5af1;
+}
+
+.created-date {
+    color: #717171;
+    font-style: italic;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+.post-votes-value {
+    font-size: 1rem;
+    color: #444444;
+    margin: 0.25rem;
+}
+
+.post-votes-container {
+    display: flex;
+}
+
+.post-comments-container {
+    justify-content: flex-end;
+}
+
+.post-votes-container button {
+    background: none;
+    border: none;
+}
+
+.like-icon {
+    font-size: 1.5rem;
+    color: #717171;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.dislike-icon {
+    font-size: 1.5rem;
+    color: #717171;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.post-comments-container button {
+    background: none;
+    border: none;
+}
+
+.comment-icon {
+    font-size: 1.5rem;
+    color: #717171;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.comment-icon:hover {
+    font-size: 1.5rem;
+    color: #3d5af1;
+    background: #0000000f;
+    border-radius: 5px;
+}
+
+.like-icon:hover {
+    font-size: 1.5rem;
+    color: #45b81f;
+    background: #0000000f;
+    border-radius: 5px;
+}
+
+.dislike-icon:hover {
+    font-size: 1.5rem;
+    color: #ff304f;
+    background: #0000000f;
+    border-radius: 5px;
+}
+
+.like-icon-active {
+    font-size: 1.5rem;
+    color: #45b81f;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.dislike-icon-active {
+    font-size: 1.5rem;
+    color: #ff304f;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.like-icon-active:hover {
+    font-size: 1.5rem;
+    color: #45b81f;
+    background: #0000000f;
+    border-radius: 5px;
+}
+
+.dislike-icon-active:hover {
+    font-size: 1.5rem;
+    color: #ff304f;
+    background: #0000000f;
+    border-radius: 5px;
+}
