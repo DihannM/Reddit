@@ -18,12 +18,13 @@
 
 .post-title {
     color: #444444;
-    margin: 5px 0;
+    margin-top: 8px;
+    margin-bottom: 0;
 }
 
 
 .author-username {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: #3d5af1;
 }
@@ -32,7 +33,6 @@
     color: #717171;
     font-style: italic;
     font-size: 0.75rem;
-    margin-left: 0.25rem;
 }
 
 .post-votes-value {
@@ -127,4 +127,9 @@
     color: #ff304f;
     background: #0000000f;
     border-radius: 5px;
+}
+
+.test {
+    display: flex;
+    flex-direction: column;
 }

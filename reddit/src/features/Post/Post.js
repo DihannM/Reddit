@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Post.css';
 import Card from '../../components/Card/Card';
 import { BiLike, BiDislike, BiCommentDetail, BiSolidLike, BiSolidDislike } from 'react-icons/bi';
+import Avatar from '../Avatar/Avatar';
 
 
 const Post = () => {
@@ -48,10 +49,13 @@ const Post = () => {
                 <div className="post-wrapper">
                     <div className="post-container">
                         <span className="author-details">
-                                    <span className="author-username">Author</span>
-                                    <span className="created-date">~ post created date</span>
+                            <Avatar />
+                            <div className="test">
+                                <span className="author-username">Dihann Malan</span>
+                                <span className="created-date">5 days ago</span>
+                            </div>
                         </span>
-                        <h3 className="post-title">Title</h3>
+                        <h4 className="post-title">“I may not have gone where I intended to go, but I think I may have ended up where I intended to be.” – Douglas Adams</h4>
                         <div className="post-image-container">
                             <img src="/assets/images/audi.jpg" alt="image" className="post-image" />
                         </div>
