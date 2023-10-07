@@ -7,9 +7,11 @@ function App() {
   return (
     <>
       <Header/>
-      <main>
-        <Home />
-      </main>
+      <div className="root">
+        <main>
+          <Home />
+        </main>
+      </div>
     </>
   );
 }

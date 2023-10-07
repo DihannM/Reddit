@@ -1,0 +1,37 @@
+.comment {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.comment-author {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #3d5af1;
+    margin: 0;
+}
+
+.comment-avatar {
+    height: 1.5rem;
+}
+
+.comment-created-time {
+    color: #717171;
+    font-style: italic;
+    font-size: 0.5rem;
+    margin: 2px 0;
+}
+
+.comment-author-details {
+    background-color: #eaeaea;
+    border-radius: 5px;
+    padding: 0.25rem 0.5rem;
+    /* margin: 0.5rem 0; */
+}
+
+.comment-details {
+    width: auto;
+}
+
+.comment-body p {
+    margin: 0;
+}

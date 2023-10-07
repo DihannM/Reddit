@@ -22,6 +22,12 @@
   font-size: calc(10px + 2vmin);
 }
 
+.root {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 16px;
+}
+
 .App-link {
   color: rgb(112, 76, 182);
 }

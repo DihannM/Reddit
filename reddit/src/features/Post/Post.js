@@ -3,6 +3,7 @@ import './Post.css';
 import Card from '../../components/Card/Card';
 import { BiLike, BiDislike, BiCommentDetail, BiSolidLike, BiSolidDislike } from 'react-icons/bi';
 import Avatar from '../Avatar/Avatar';
+import Comment from '../Comment/Comment';
 
 
 const Post = () => {
@@ -42,6 +43,23 @@ const Post = () => {
         return <BiDislike className="dislike-icon"/>
     }
 
+    const getVoteType = () => {
+        if (voteValue === 1) {
+            return 'up-vote';
+        } else if (voteValue === -1) {
+            return 'down-vote';
+        }
+        return '';
+    }
+
+    const renderComments = () => {
+        return (
+            <div>
+                <Comment />
+            </div>
+        );
+    }
+
 
     return (
         <article>
@@ -63,18 +81,18 @@ const Post = () => {
                             <div className="post-votes-container">
                                 <button
                                     type="button"
-                                    className="up-vote"
+                                    className={`like-button ${voteValue === 1}`}
                                     aria-label="Up vote"
                                     onClick={upVote}
                                 >
                                     {renderUpVote()}
                                 </button>
-                                <p className="post-votes-value">
+                                <p className={`post-votes-value ${getVoteType()}`}>
                                     {voteValue < 0 ? 0 : voteValue}
                                 </p>
                                 <button
                                     type="button"
-                                    className="down-vote"
+                                    className={`dislike-button ${voteValue === -1}`}
                                     aria-label="Down vote"
                                     onClick={downVote}
                                 >
@@ -90,6 +108,7 @@ const Post = () => {
                                 </button>
                             </span>
                         </div>
+                        {renderComments()}
                     </div>
                 </div>
             </Card>
