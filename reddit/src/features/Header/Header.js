@@ -1,18 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BiSearchAlt } from 'react-icons/bi';
 import { FaReddit } from 'react-icons/fa';
 import './Header.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSearchTerm } from '../../store/redditSlice';
+import { setSearchTerm } from '../../store/redditSlice';
 
 const Header = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTermLocal, setSearchTermLocal] = useState('');
+
+    const searchTerm = useSelector(selectSearchTerm);
+    const dispatch = useDispatch();
 
     const onSearchTermChange = (e) => {
-        setSearchTerm(e.target.value);
+        setSearchTermLocal(e.target.value);
     };
+
+    useEffect(() => {
+        setSearchTermLocal(searchTerm);
+      }, [searchTerm]);
 
     const onSearchTermSubmit = (e) => {
         e.preventDefault();
-        setSearchTerm(searchTerm);
+        dispatch(setSearchTerm(searchTermLocal));
       };
 
     return (
@@ -27,7 +37,7 @@ const Header = () => {
                 <input
                     type="text"
                     placeholder="Search"
-                    value={searchTerm}
+                    value={searchTermLocal}
                     onChange={onSearchTermChange}
                     aria-label="Search posts"
                 >

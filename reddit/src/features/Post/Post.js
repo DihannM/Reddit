@@ -6,8 +6,10 @@ import Avatar from '../Avatar/Avatar';
 import Comment from '../Comment/Comment';
 
 
-const Post = () => {
+const Post = (props) => {
     const [voteValue, setVoteValue] = useState(0);
+
+    const post = props;
 
     const upVote = () => {
         if  (voteValue === 0) {
@@ -62,20 +64,20 @@ const Post = () => {
 
 
     return (
-        <article>
+        <article key={post.id}>
             <Card>
                 <div className="post-wrapper">
                     <div className="post-container">
                         <span className="author-details">
                             <Avatar />
                             <div className="test">
-                                <span className="author-username">Dihann Malan</span>
+                                <span className="author-username">{post.author}</span>
                                 <span className="created-date">5 days ago</span>
                             </div>
                         </span>
-                        <h4 className="post-title">“I may not have gone where I intended to go, but I think I may have ended up where I intended to be.” – Douglas Adams</h4>
+                        <h4 className="post-title">{post.title}</h4>
                         <div className="post-image-container">
-                            <img src="/assets/images/audi.jpg" alt="image" className="post-image" />
+                            <img src={post.url} alt="image" className="post-image" />
                         </div>
                         <div className="post-details">
                             <div className="post-votes-container">
