@@ -21,6 +21,10 @@ header {
   
 }
 
+aside {
+  padding-right: 16px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

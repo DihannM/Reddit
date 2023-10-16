@@ -7,11 +7,23 @@ const allPosts = [
 ];
 
 const allComments = [
-    { id: 1, author: 'TESTING', cooment: 'Test'},
-    { id: 2, author: 'TESTING', cooment: 'Test'},
-    { id: 3, author: 'TESTING', cooment: 'Test'},
-    { id: 4, author: 'TESTING', cooment: 'Test'},
-    { id: 5, author: 'TESTING', cooment: 'Test'},
+    { id: 1, author: 'TESTING', comment: 'Test'},
+    { id: 2, author: 'TESTING', comment: 'Test'},
+    { id: 3, author: 'TESTING', comment: 'Test'},
+    { id: 4, author: 'TESTING', comment: 'Test'},
+    { id: 5, author: 'TESTING', comment: 'Test'},
+]
+
+const subReddits = [
+    { id: 1, display_name:'Audi', url:'', icon_img:'/assets/images/astronaut.png'},
+    { id: 2, display_name:'Pics', url:'', icon_img:'/assets/images/astronaut.png'},
+    { id: 3, display_name:'Cars', url:'', icon_img:'/assets/images/astronaut.png'},
+    { id: 4, display_name:'PC', url:'', icon_img:'/assets/images/astronaut.png'},
+    { id: 5, display_name:'Gaming', url:'', icon_img:'/assets/images/astronaut.png'},
+    { id: 6, display_name:'Programming', url:'', icon_img:'/assets/images/audi.jpg'},
+    { id: 7, display_name:'Testing', url:'', icon_img:'/assets/images/audi.jpg'},
+    { id: 8, display_name:'Courses', url:'', icon_img:'/assets/images/audi.jpg'}
 ]
   
-export default allPosts;
+export default {allPosts, subReddits};
+
