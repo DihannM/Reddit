@@ -18,13 +18,18 @@ const redditSlice = createSlice({
         },
         setSearchTerm(state, action) {
             state.searchTerm = action.payload;
+        },
+        setSelectedSubreddit(state, action) {
+            state.selectedSubreddit = action.payload;
+            state.searchTerm = '';
         }
     }
 });
 
 export const {
     setPosts,
-    setSearchTerm
+    setSearchTerm,
+    setSelectedSubreddit
 } = redditSlice.actions;
 
 export const selectPosts = (state) => state.reddit.posts;
