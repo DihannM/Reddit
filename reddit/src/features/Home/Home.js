@@ -1,15 +1,24 @@
-import React from 'react';
-import {useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import {useSelector, useDispatch } from 'react-redux';
 import './Home.css';
 import Post from '../Post/Post';
 import {
+    fetchPosts,
     selectFilteredPosts,
-    selectPosts
+    selectPosts,
+    selectSelectedSubreddit
   } from '../../store/redditSlice';
 
 const Home = () => {
     // const posts = useSelector(selectPosts);
+    const dispatch = useDispatch();
     const posts = useSelector(selectFilteredPosts);
+    const reddit = useSelector((state) => state.reddit);
+    const { selectedSubreddit } = reddit
+
+    useEffect(() => {
+        dispatch(fetchPosts(selectedSubreddit));
+    }, [selectedSubreddit]);
 
     return (
         <>
