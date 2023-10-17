@@ -9,7 +9,7 @@ import Comment from '../Comment/Comment';
 const Post = (props) => {
     const [voteValue, setVoteValue] = useState(0);
 
-    const post = props;
+    const { post, onToggleComments } = props;
 
     const upVote = () => {
         if  (voteValue === 0) {
@@ -55,11 +55,17 @@ const Post = (props) => {
     }
 
     const renderComments = () => {
-        return (
-            <div>
-                <Comment />
-            </div>
-        );
+        if(post.showingComments) {
+            return (
+                <div>
+                    {post.comments.map((comment) => (
+                        <Comment comment={comment} key={comment.id} />
+                    ))}
+                </div>
+            );
+        }
+
+        return null;
     }
 
 
@@ -105,12 +111,16 @@ const Post = (props) => {
                                 <button
                                     type="button"
                                     aria-label="Show comments"
+                                    onClick={() => onToggleComments(post.permalink)}
+                                    className={`comment-button ${post.showingComments && `showing-comments`}`}
                                 >
                                     <BiCommentDetail className="comment-icon" />
                                 </button>
                             </span>
                         </div>
-                        {renderComments()}
+                        <div className='comment-container'>
+                            {renderComments()}
+                        </div>
                     </div>
                 </div>
             </Card>
