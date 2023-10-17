@@ -3,7 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 16px;
     margin-bottom: 8px;
+    border-top: 1px solid #e6e6e6;
 }
 
 .post-image {
@@ -15,6 +17,10 @@
 .author-details {
     display: inline-flex;
     align-items: center;
+}
+
+.comment-container {
+    margin-top: 8px;
 }
 
 .post-title {
@@ -66,20 +72,24 @@
     cursor: pointer;
 }
 
-.post-comments-container button {
+.comment-button {
     background: none;
     border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #717171;
+    padding: 2px;
+}
+
+.showing-comments {
+    color: #3d5af1;
 }
 
 .comment-icon {
     font-size: 1.5rem;
-    color: #717171;
-    padding: 2px;
-    cursor: pointer;
 }
 
-.comment-icon:hover {
-    font-size: 1.5rem;
+.comment-button:hover {
     color: #3d5af1;
     background: #0000000f;
     border-radius: 5px;

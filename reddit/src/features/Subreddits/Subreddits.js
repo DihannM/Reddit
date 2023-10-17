@@ -34,6 +34,7 @@ const Subreddits = () => {
                                 src={subreddit.icon_img}
                                 alt={`${subreddit.display_name}`}
                                 className='subreddit-icon'
+                                style={{ border: `3px solid ${subreddit.primary_color}` }}
                             />
                             {subreddit.display_name}
                         </button>

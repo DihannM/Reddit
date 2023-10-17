@@ -3,10 +3,9 @@ import {useSelector, useDispatch } from 'react-redux';
 import './Home.css';
 import Post from '../Post/Post';
 import {
+    fetchComments,
     fetchPosts,
-    selectFilteredPosts,
-    selectPosts,
-    selectSelectedSubreddit
+    selectFilteredPosts
   } from '../../store/redditSlice';
 
 const Home = () => {
@@ -20,14 +19,21 @@ const Home = () => {
         dispatch(fetchPosts(selectedSubreddit));
     }, [selectedSubreddit]);
 
+    const onToggleComments = (index) => {
+        const getComments = (permalink) => {
+            dispatch(fetchComments(index, permalink));
+        };
+
+        return getComments;
+    }
+
     return (
         <>
-            {posts.map((post) => (
+            {posts.map((post, index) => (
                 <Post 
                     key={post.id}
-                    author={post.author}
-                    url={post.url}
-                    title={post.title}
+                    post={post}
+                    onToggleComments={onToggleComments(index)}
                 />
             ))}
         </>
