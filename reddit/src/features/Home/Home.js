@@ -5,15 +5,18 @@ import Post from '../Post/Post';
 import {
     fetchComments,
     fetchPosts,
-    selectFilteredPosts
-  } from '../../store/redditSlice';
+    selectFilteredPosts,
+    setSearchTerm
+} from '../../store/redditSlice';
+import PostLoading from '../Post/PostLoading';
+import { AnimatedList } from 'react-animated-list';
 
 const Home = () => {
     // const posts = useSelector(selectPosts);
     const dispatch = useDispatch();
     const posts = useSelector(selectFilteredPosts);
     const reddit = useSelector((state) => state.reddit);
-    const { selectedSubreddit } = reddit
+    const { isLoading, error, searchTerm, selectedSubreddit } = reddit
 
     useEffect(() => {
         dispatch(fetchPosts(selectedSubreddit));
@@ -26,6 +29,44 @@ const Home = () => {
 
         return getComments;
     }
+
+    if (isLoading) {
+        return (
+            <AnimatedList animation={"grow"}>
+                {posts.map((p) => (
+                    <PostLoading  key={p.id}/>
+                ))}
+            </AnimatedList>
+        );
+    };
+
+    if (error) {
+        return (
+            <div className='error-container'>
+                <h2>Failed to load posts.</h2>
+                <button
+                    type="button"
+                    onClick={() => dispatch(fetchPosts(selectedSubreddit))}
+                >
+                    Try again
+                </button>
+            </div>
+        );
+    };
+
+    if (posts.length === 0) {
+        return (
+            <div className='error-container'>
+                <h2>No results found for "{searchTerm}".</h2>
+                <button
+                    type="button"
+                    onClick={() => dispatch(setSearchTerm(''))}
+                >
+                    Home
+                </button>
+            </div>
+        );
+    };
 
     return (
         <>

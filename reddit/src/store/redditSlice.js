@@ -1,12 +1,14 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import allPosts from '../data/data';
-import { getPostComments, getSubredditPosts, getUsers } from '../api/reddit_api';
+import { getPostComments, getSubredditPosts } from '../api/reddit_api';
 
 
 const initialState = {
     posts: [],
     searchTerm: '',
     selectedSubreddit: '/r/pics/',
+    isLoading: false,
+    error: false,
 }
 
 const redditSlice = createSlice({
@@ -14,6 +16,18 @@ const redditSlice = createSlice({
     initialState,
     reducers: {
         setPosts(state, action) {
+            state.posts = action.payload;
+        },
+        startGetPosts(state) {
+            state.isLoading = true;
+            state.error = false;
+        },
+        getPostsFailed(state) {
+            state.isLoading = false;
+            state.error = true;
+        },
+        getPostsSuccess(state, action) {
+            state.isLoading = false;
             state.posts = action.payload;
         },
         setSearchTerm(state, action) {
@@ -46,7 +60,10 @@ export const {
     setSelectedSubreddit,
     getComments,
     toggleShowingComments,
-    startGetComments
+    startGetComments,
+    startGetPosts,
+    getPostsSuccess,
+    getPostsFailed
 } = redditSlice.actions;
 
 export const selectPosts = (state) => state.reddit.posts;
@@ -66,15 +83,21 @@ export const selectFilteredPosts = createSelector(
 )
 
 export const fetchPosts = (subreddit) => async (dispatch) => {
-    const posts = await getSubredditPosts(subreddit);
+    try {
+        dispatch(startGetPosts());
+        const posts = await getSubredditPosts(subreddit);
+    
+        const postsWithMetadata = posts.map((post) => ({
+            ...post,
+            showingComments: false,
+            comments: [],
+        }));
+    
+        dispatch(getPostsSuccess(postsWithMetadata));
+    } catch (error) {
+        dispatch(getPostsFailed());
+    };
 
-    const postsWithMetadata = posts.map((post) => ({
-        ...post,
-        showingComments: false,
-        comments: [],
-    }));
-
-    dispatch(setPosts(postsWithMetadata));
 };
 
 export const fetchComments = (index, permalink) => async (dispatch) => {
