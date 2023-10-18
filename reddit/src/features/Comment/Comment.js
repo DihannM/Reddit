@@ -2,6 +2,7 @@ import React from 'react';
 import './Comment.css';
 import Avatar from '../Avatar/Avatar';
 import ReactMarkdown from 'react-markdown';
+import moment from 'moment';
 
 const Comment = (props) => {
 
@@ -20,7 +21,7 @@ const Comment = (props) => {
                             <ReactMarkdown children={src}/>
                         </div>
                     </div>
-                    <p className="comment-created-time">1 day ago</p>
+                    <p className="comment-created-time">{moment.unix(comment.created_utc).fromNow()}</p>
                 </div>
             </div>
         </div>
