@@ -55,7 +55,7 @@
 .post-votes-container button {
     background: none;
     border: none;
-    padding: 0;
+    padding: 0 4px;
 }
 
 .like-icon {
@@ -156,8 +156,4 @@
     font-weight: bold;
     color: #717171;
     margin: 0.25rem 0.5rem;
-}
-
-.comment-border {
-    border-top: 1px solid #e6e6e6;
 }
