@@ -2,7 +2,7 @@ import React from 'react';
 import './Post.css';
 import './PostLoading.css';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 import { BiLike, BiDislike, BiCommentDetail } from 'react-icons/bi';
 
 const PostLoading = () => {
