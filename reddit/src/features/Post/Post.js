@@ -6,6 +6,8 @@ import Avatar from '../Avatar/Avatar';
 import Comment from '../Comment/Comment';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
+import moment from 'moment';
+import shortenNumber from '../../utils/shortenNumber';
 
 
 const Post = (props) => {
@@ -100,7 +102,7 @@ const Post = (props) => {
                             <Avatar />
                             <div className="test">
                                 <span className="author-username">{post.author}</span>
-                                <span className="created-date">5 days ago</span>
+                                <span className="created-date">{moment.unix(post.created_utc).fromNow()}</span>
                             </div>
                         </span>
                         <h4 className="post-title">{post.title}</h4>
@@ -118,7 +120,8 @@ const Post = (props) => {
                                     {renderUpVote()}
                                 </button>
                                 <p className={`post-votes-value ${getVoteType()}`}>
-                                    {voteValue < 0 ? 0 : voteValue}
+                                    {shortenNumber(post.ups, 1)}
+                                    {/* {voteValue < 0 ? 0 : voteValue} */}
                                 </p>
                                 <button
                                     type="button"
@@ -138,6 +141,7 @@ const Post = (props) => {
                                 >
                                     <BiCommentDetail className="comment-icon" />
                                 </button>
+                                <p className="post-comments-value">{shortenNumber(post.num_comments, 1)}</p>
                             </span>
                         </div>
                         <div className='comment-container'>
