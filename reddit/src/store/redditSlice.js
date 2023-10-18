@@ -47,8 +47,15 @@ const redditSlice = createSlice({
             if (!state.posts[action.payload].showingComments) {
                 return;
             }
+            state.posts[action.payload].loadingComments = true;
+            state.posts[action.payload].errorComments = false;
         },
-        getComments(state, action) {
+        getCommentsFailed(state, action) {
+            state.posts[action.payload].loadingComments = false;
+            state.posts[action.payload].errorComments = true;
+        },
+        getCommentsSuccess(state, action) {
+            state.posts[action.payload.index].loadingComments = false;
             state.posts[action.payload.index].comments = action.payload.comments;
         },
     }
@@ -58,12 +65,14 @@ export const {
     setPosts,
     setSearchTerm,
     setSelectedSubreddit,
+    startGetPosts,
+    getPostsSuccess,
+    getPostsFailed,
     getComments,
     toggleShowingComments,
     startGetComments,
-    startGetPosts,
-    getPostsSuccess,
-    getPostsFailed
+    getCommentsFailed,
+    getCommentsSuccess
 } = redditSlice.actions;
 
 export const selectPosts = (state) => state.reddit.posts;
@@ -91,6 +100,9 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
             ...post,
             showingComments: false,
             comments: [],
+            loadingComments: false,
+            errorComments: false,
+            
         }));
     
         dispatch(getPostsSuccess(postsWithMetadata));
@@ -101,9 +113,14 @@ export const fetchPosts = (subreddit) => async (dispatch) => {
 };
 
 export const fetchComments = (index, permalink) => async (dispatch) => {
-    dispatch(startGetComments(index));
-    const comments = await getPostComments(permalink);
-    dispatch(getComments({index, comments}));
+    try {
+        dispatch(startGetComments(index));
+        const comments = await getPostComments(permalink);
+        dispatch(getCommentsSuccess({index, comments}));
+    } catch (error) {
+        dispatch(getCommentsFailed(index));
+    }
+
 };
 
 

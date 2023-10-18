@@ -4,6 +4,8 @@ import Card from '../../components/Card/Card';
 import { BiLike, BiDislike, BiCommentDetail, BiSolidLike, BiSolidDislike } from 'react-icons/bi';
 import Avatar from '../Avatar/Avatar';
 import Comment from '../Comment/Comment';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const Post = (props) => {
@@ -55,6 +57,26 @@ const Post = (props) => {
     }
 
     const renderComments = () => {
+
+        if(post.errorComments) {
+            return (
+                <div>
+                    <h3>Failed to load comments.</h3>
+                </div>
+            );
+        }
+
+        if(post.loadingComments) {
+            return (
+                <div>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                </div>
+            );
+        }
+
         if(post.showingComments) {
             return (
                 <div>
