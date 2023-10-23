@@ -29,3 +29,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@media only screen and (max-width: 600px) {
+  #root {
+    grid-template-columns: 1fr;
+  }
+
+  .root {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    grid-column: 1;
+    padding: 0 1rem;
+  }
+
+  header {
+    display: flex;
+    align-content: center;
+    padding: 0 10px;
+    justify-content: space-between;
+}
+}
